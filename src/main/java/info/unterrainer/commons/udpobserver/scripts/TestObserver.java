@@ -29,6 +29,7 @@ public class TestObserver {
 
 	private static void outputList(final Collection<UdpDatagram> list) {
 		for (UdpDatagram data : list)
-			System.out.println(String.format("[%s] %s", data.getTimestamp().format(formatter), data.getContent()));
+			System.out.println(
+					String.format("[%s] %s", data.getMetaData().getTimestamp().format(formatter), data.getContent()));
 	}
 }
