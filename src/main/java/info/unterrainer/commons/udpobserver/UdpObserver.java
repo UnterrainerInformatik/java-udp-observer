@@ -10,6 +10,7 @@ import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
@@ -39,10 +40,15 @@ public class UdpObserver extends Thread {
 					String received = new String(packet.getData(), 0, packet.getLength());
 					InetSocketAddress adr = (InetSocketAddress) packet.getSocketAddress();
 					outputs.add(UdpDatagram.builder()
-							.metaData(UdpDatagramMetaData.builder().hostString(adr.getHostString())
-									.sender(adr.getAddress()).sendPort(adr.getPort())
-									.timestamp(LocalDateTime.now(ZoneOffset.UTC)).build())
-							.content(received).bytes(Arrays.copyOf(packet.getData(), packet.getLength())).build());
+							.metaData(UdpDatagramMetaData.builder()
+									.hostString(adr.getHostString())
+									.sender(adr.getAddress())
+									.sendPort(adr.getPort())
+									.timestamp(LocalDateTime.now(ZoneOffset.UTC))
+									.build())
+							.content(received)
+							.bytes(Arrays.copyOf(packet.getData(), packet.getLength()))
+							.build());
 				} catch (IOException e) {
 					// NOOP
 				}
@@ -55,7 +61,7 @@ public class UdpObserver extends Thread {
 	}
 
 	public Collection<UdpDatagram> getReceivedDatagrams() {
-		List<UdpDatagram> result = outputs.stream().collect(Collectors.toList());
+		List<UdpDatagram> result = outputs.stream().filter(Objects::nonNull).collect(Collectors.toList());
 		outputs.clear();
 		return result;
 	}

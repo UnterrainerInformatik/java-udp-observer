@@ -11,7 +11,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>info.unterrainer.commons.udp-observer</groupId>
 	<artifactId>udp-observer</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.6</version>
 	<name>UdpObserver</name>
 	<packaging>jar</packaging>
 
