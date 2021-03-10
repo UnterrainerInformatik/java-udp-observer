@@ -17,6 +17,9 @@
 
 	<properties>
 		<mainclass>info.unterrainer.commons.udpobserver.scripts.TestObserver</mainclass>
+		<name>UDP-Observer</name>
+		<package-path>info/unterrainer/commons/udpobserver</package-path>
+		<packg-string>info.unterrainer.commons.udpobserver</packg-string>
 	</properties>
 
 	<dependencies>
