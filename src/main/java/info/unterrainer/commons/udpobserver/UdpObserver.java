@@ -39,16 +39,18 @@ public class UdpObserver extends Thread {
 					socket.receive(packet);
 					String received = new String(packet.getData(), 0, packet.getLength());
 					InetSocketAddress adr = (InetSocketAddress) packet.getSocketAddress();
-					outputs.add(UdpDatagram.builder()
-							.metaData(UdpDatagramMetaData.builder()
-									.hostString(adr.getHostString())
-									.sender(adr.getAddress())
-									.sendPort(adr.getPort())
-									.timestamp(LocalDateTime.now(ZoneOffset.UTC))
-									.build())
-							.content(received)
-							.bytes(Arrays.copyOf(packet.getData(), packet.getLength()))
-							.build());
+					synchronized (outputs) {
+						outputs.add(UdpDatagram.builder()
+								.metaData(UdpDatagramMetaData.builder()
+										.hostString(adr.getHostString())
+										.sender(adr.getAddress())
+										.sendPort(adr.getPort())
+										.timestamp(LocalDateTime.now(ZoneOffset.UTC))
+										.build())
+								.content(received)
+								.bytes(Arrays.copyOf(packet.getData(), packet.getLength()))
+								.build());
+					}
 				} catch (IOException e) {
 					// NOOP
 				}
@@ -61,9 +63,11 @@ public class UdpObserver extends Thread {
 	}
 
 	public Collection<UdpDatagram> getReceivedDatagrams() {
-		List<UdpDatagram> result = outputs.stream().filter(Objects::nonNull).collect(Collectors.toList());
-		outputs.clear();
-		return result;
+		synchronized (outputs) {
+			List<UdpDatagram> result = outputs.stream().filter(Objects::nonNull).collect(Collectors.toList());
+			outputs.clear();
+			return result;
+		}
 	}
 
 	public void close() {
