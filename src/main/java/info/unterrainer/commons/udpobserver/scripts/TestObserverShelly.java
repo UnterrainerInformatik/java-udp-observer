@@ -7,12 +7,15 @@ import java.util.Collection;
 import info.unterrainer.commons.udpobserver.UdpDatagram;
 import info.unterrainer.commons.udpobserver.UdpObserver;
 
-public class TestObserver {
+public class TestObserverShelly {
 
+	/**
+	 * STA:{"type":"ENOCEAN","adr":"fef2b30d","data":"eltako_button4","vendor":"eltako","state":{"BI":"pressed","BO":"released","AO":"released","AI":"released"}}
+	 */
 	private static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 
 	public static void main(final String[] args) throws InterruptedException, IOException {
-		UdpObserver observer = new UdpObserver(8001, 256, 1000);
+		UdpObserver observer = new UdpObserver(1901, 256, 1000);
 		observer.start();
 		System.out.println("listening for UDP packets...");
 		System.out.println("press <enter> to stop.");

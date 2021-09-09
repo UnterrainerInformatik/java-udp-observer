@@ -1,0 +1,1 @@
+java -cp "target/libs/*;target/classes" info.unterrainer.commons.udpobserver.scripts.TestObserver
