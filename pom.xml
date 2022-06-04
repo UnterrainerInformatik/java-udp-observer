@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>info.unterrainer.commons</groupId>
 		<artifactId>parent-pom</artifactId>
-		<version>0.1.22</version>
+		<version>0.1.26</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>info.unterrainer.commons.udp-observer</groupId>
 	<artifactId>udp-observer</artifactId>
-	<version>0.1.11</version>
+	<version>0.1.12</version>
 	<name>UdpObserver</name>
 	<packaging>jar</packaging>
 
@@ -26,17 +26,17 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>2.11.0</version>
+			<version>2.13.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.11.0</version>
+			<version>2.13.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.11.0</version>
+			<version>2.13.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
