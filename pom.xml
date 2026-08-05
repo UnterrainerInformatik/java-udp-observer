@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>info.unterrainer.commons</groupId>
 		<artifactId>parent-pom</artifactId>
-		<version>1.0.1</version>
+		<version>1.0.4</version>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
@@ -29,6 +29,34 @@
 			<artifactId>commons-collections4</artifactId>
 			<version>4.4</version>
 		</dependency>
+		<dependency>
+			<groupId>info.unterrainer.commons</groupId>
+			<artifactId>serialization</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>analyze</id>
+							<configuration>
+								<ignoredUnusedDeclaredDependencies
+									combine.children="append">
+									<ignoredUnusedDeclaredDependencies>info.unterrainer.commons:serialization</ignoredUnusedDeclaredDependencies>
+								</ignoredUnusedDeclaredDependencies>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 
 </project>
